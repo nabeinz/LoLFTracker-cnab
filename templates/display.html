@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+
+{% block Title %}
+LO LF Tracker
+{% endblock %}
+
+{% block Body %}
+<div class="container">
+    <div class="row">
+        <div class="col md-12">
+
+            <div class="jumbotron p-3">
+ <table class="table table-hover table-dark">
+
+                    <tr>
+
+                        <th>BADGE ID</th>
+                        <th>EMPLOYEE NAME</th>
+                        <th>USER ID</th>
+                        <th>DATE</th>
+                        <th>FUNCTION</th>
+
+                    </tr>
+
+
+                   {% for row in data %}
+                    <tr>
+                        <td>{{row.badge_barcode_id}}</td>
+                        <td>{{row.employee_name}}</td>
+                        <td>{{row.amazon_id}}</td>
+                        <td>{{row.date}}</td>
+                        <td>{{row.lolf}}</td>
+                    </tr>
+
+
+                    {% endfor %}
+
+
+ </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

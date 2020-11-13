@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+
+{% block Title %}
+LO LF Tracker
+{% endblock %}
+
+{% block Body %}
+
+<div class="container">
+    <div class="jumbotron p-3">
+      <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#mymodal"><i class="fa fa-download"></i> Report</button>
+
+<center><h1>&nbsp;&nbsp;LO-LF Tracker</h1></center>
+  <form form action="{{url_for('checkin')}}" method="POST">
+  <div class="row">
+    <div class="col-25">
+	<br>
+      <label for="Badge ID">Badge ID</label>
+    </div>
+    <div class="col-75">
+	<br>
+      <input type="NUMBER" id="badge_barcode_id" name="badge_barcode_id" placeholder="Scan your badge" required>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-25"><br>
+      <label for="function">Function</label>
+    </div>
+    <div class="col-75">
+      <div >
+  <label>
+    <input type="radio" class="option-input radio" id="lo" name="lolf" value="LO" required />
+   LO   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </label>
+  <label>
+    <input type="radio" class="option-input radio"  id="lF" name="lolf" value="LF" required/>
+   LF
+  </label>
+</div>
+    </div>
+  </div>
+ <br>
+  <div class="row">
+    <input type="submit" value="Check In">
+  </div>
+  </form>
+</div>
+
+
+ {% with messages = get_flashed_messages() %}
+
+                {% if messages %}
+
+                {% for message in messages %}
+
+                <div class="alert alert-success alert-dismissable" role="alert">
+
+                    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+
+                        <span aria-hidden="true">x</span>
+
+                    </button>
+
+
+                {{message}}
+
+
+                </div>
+
+
+                {% endfor %}
+
+                {% endif %}
+                {% endwith %}
+  </div>
+
+<!-- Modal -->
+<div class="modal fade" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Download Check-In Assocaited</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+           <div class="form-group"> <!-- Date input -->
+             Start Date: <input type="date" id="start" name="start">
+           </div>
+           <div class="form-group"> <!-- Date input -->
+             End Date:  <input type="date" id="end" name="end">
+           </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Show</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
